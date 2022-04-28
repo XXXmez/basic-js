@@ -15,10 +15,37 @@ const { NotImplementedError } = require('../extensions/index.js');
  * => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
  *
  */
-function repeater(/* str, options */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function repeater(str, options) {
+  let repeatTimes = options.repeatTimes || 1;                 // количество повторений str
+  let separator = options.separator || '+';                // разделяющим повторением str
+  let additionSeparator = options.additionSeparator || '|';   // разделяющим повторением addition
+  let additionRepeatTimes = options.additionRepeatTimes || 1; // количество повторений addition
+  let addition = options.addition;                            // который будет добавляться к каждому повторению str
+
+  let newStr = [];
+
+  for (let i = 0; i < repeatTimes; i++) {
+    let addit = str
+    if (addition !== undefined) {
+      for (let j = 0; j < additionRepeatTimes; j++) {
+        if (j+1 < additionRepeatTimes) {
+          addit += addition+additionSeparator
+        } else if (j+1==additionRepeatTimes) {
+          addit += addition+''
+        }
+      }
+    }
+    newStr.push(addit)
+    
+  }
+
+  //console.log(newStr.join(separator+''), newStr.join(separator+'')=='STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS');
+  return newStr.join(separator+'')
+  
 }
+
+// repeater('STRING', { repeatTimes: 3, separator: '**', addition: 'PLUS', additionRepeatTimes: 3, additionSeparator: '00' })
+//  => 'STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS**STRINGPLUS00PLUS00PLUS'
 
 module.exports = {
   repeater
