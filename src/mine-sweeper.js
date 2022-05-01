@@ -23,10 +23,55 @@ const { NotImplementedError } = require('../extensions/index.js');
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new NotImplementedError('Not implemented');
-  // remove line with error and write your code here
+function minesweeper(matrix) {
+  let res = [];
+  //let newArr = [...matrix].flat();
+  // console.log(newArr);
+  // newArr.forEach((e,i) => {
+  //   let r = 0;
+  //   if (newArr[i-matrix[0].length - 1] == true){r++}
+  //   if (newArr[i-matrix[0].length] == true){r++}
+  //   if (newArr[i-matrix[0].length + 1] == true){r++}
+
+  //   if (newArr[i-1] == true){r++}
+  //   if (newArr[i+1] == true){r++}
+
+  //   if (newArr[i+matrix[0].length - 1] == true){r++}
+  //   if (newArr[i+matrix[0].length] == true){r++}
+  //   if (newArr[i+matrix[0].length + 1] == true){r++}
+
+  //   res.push(r)
+  // })
+  for(let i = 0; i < matrix.length; i++) {
+    res[i] = [];
+
+    for(let j = 0; j < matrix[0].length; j++) {
+      let num = 0;
+      if (matrix[i - 1]) {
+        if(matrix[i - 1][j]) num++;
+        if(matrix[i - 1][j + 1]) num++;
+        if(matrix[i - 1][j - 1]) num++;
+      }
+      if(matrix[i][j - 1]) num++;
+      if(matrix[i][j + 1]) num++;
+      if (matrix[i + 1]) {
+        if(matrix[i + 1][j]) num++;
+        if(matrix[i + 1][j + 1]) num++;
+        if(matrix[i + 1][j - 1]) num++;
+      }
+      res[i][j] = num;
+    }
+  }
+  console.log(res);
+  return res;
 }
+
+// const matrix = [
+//   [true, false, false],
+//   [false, true, false],
+//   [false, false, false]
+// ];
+// minesweeper(matrix)   // => [ [1, 2, 1], [2, 1, 1], [1, 1, 1] ];
 
 module.exports = {
   minesweeper
