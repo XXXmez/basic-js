@@ -66,7 +66,7 @@ class VigenereCipheringMachine {
 
       // console.log(this.abc.includes(m[i]));
 
-      if (this.abc.includes(m[i])) res += codeAbc[this.abc.indexOf(m[i])]
+      if (this.abc.includes(m[i])) res += this.abc[codeAbc.indexOf(m[i])]
       else res += m[i]
     }
     
@@ -76,7 +76,7 @@ class VigenereCipheringMachine {
       if (mes[i] != ' ') result += revM.pop()
       else result += ' '
     }
-
+    
     if (this.type) {
       console.log(result);
       return result
@@ -87,8 +87,9 @@ class VigenereCipheringMachine {
   }
 }
 
-const directMachine = new VigenereCipheringMachine(false);
-directMachine.encrypt('attack at dawn!', 'alphonse') // => 'AEIHQX SX DLLU!'
+// const directMachine = new VigenereCipheringMachine();
+// // directMachine.encrypt('attack at dawn!', 'alphonse') // => 'AEIHQX SX DLLU!'
+// directMachine.decrypt('AEIHQX SX DLLU!', 'alphonse') // => 'ATTACK AT DAWN!'
 
 
 
